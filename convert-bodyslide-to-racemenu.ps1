@@ -6,8 +6,8 @@ if ( -NOT (Test-Path "$PSScriptRoot/CBBE-XML-Input")) {
 # Grab and import an XML file in the same directory as the script. Run with only one at a time.
 [XML]$XML = Get-Content "$PSScriptRoot/CBBE-XML-Input/*.XML"
 
-if ( -NOT (Test-Path "$PSScriptRoot/CBBE-To-JSON Output")) {
-    New-Item -Path "$PSScriptRoot/CBBE-To-JSON Output" -ItemType Directory | Out-Null
+if ( -NOT (Test-Path "$PSScriptRoot/CBBE-To-JSON Output/SKSE/Plugins/StorageUtilData/RaceMenuMorphsCBBE/Presets/")) {
+    New-Item -Path "$PSScriptRoot/CBBE-To-JSON Output/SKSE/Plugins/StorageUtilData/RaceMenuMorphsCBBE/Presets/" -ItemType Directory | Out-Null
 }
 
 $Presets = $XML.SliderPresets.Preset
@@ -50,7 +50,7 @@ ForEach ($Size_String in $Size_Arr) {
                     'morphs' = $Obj_Arr
                 }
 
-            ($XML_Arr | ConvertTo-Json -Depth 5).Replace('[', '{').Replace(']', '}').Replace('",', '" :').Replace('":', '" :') | Out-File "$PSScriptRoot/CBBE-To-JSON Output/$Name-$Size.JSON"
+            ($XML_Arr | ConvertTo-Json -Depth 5).Replace('[', '{').Replace(']', '}').Replace('",', '" :').Replace('":', '" :') | Out-File "$PSScriptRoot/CBBE-To-JSON Output/SKSE/Plugins/StorageUtilData/RaceMenuMorphsCBBE/Presets/$Name-$Size.JSON"
 
             }
             
